@@ -6,7 +6,7 @@
     <title>Seyoung Joung | Research Portfolio</title>
     <meta
       name="description"
-      content="Seyoung Joung is a researcher in AI and computer vision, specializing in human-centered AI, deep learning, and 3D vision."
+      content="Research portfolio for Seyoung Joung, covering AI, computer vision, human-centered design, and publications."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,22 +16,20 @@
     />
     <style>
       :root {
-        --bg: #f7f9fc;
-        --bg-strong: #eef4ff;
-        --paper: rgba(255, 255, 255, 0.88);
-        --card: #ffffff;
-        --soft-card: #f3f7ff;
-        --line: rgba(15, 23, 42, 0.08);
-        --line-strong: rgba(15, 23, 42, 0.12);
-        --text: #101828;
-        --muted: #506074;
-        --primary: #1f5eff;
-        --primary-dark: #1639b2;
-        --secondary: #7c3aed;
-        --accent: #14b8a6;
-        --shadow: 0 20px 45px rgba(15, 23, 42, 0.08);
+        --bg: #f3efe9;
+        --bg-strong: #e8e0d3;
+        --panel: rgba(255, 255, 255, 0.42);
+        --card: rgba(255, 255, 255, 0.58);
+        --line: rgba(24, 22, 18, 0.12);
+        --line-strong: rgba(24, 22, 18, 0.18);
+        --text: #171614;
+        --muted: #5f5a53;
+        --soft: #8d867c;
+        --accent: #b87335;
+        --accent-soft: rgba(184, 115, 53, 0.12);
+        --shadow: 0 24px 60px rgba(24, 22, 18, 0.08);
         --radius: 22px;
-        --container: 1180px;
+        --container: 1160px;
       }
 
       * {
@@ -46,21 +44,31 @@
         margin: 0;
         font-family: "Inter", sans-serif;
         background:
-          radial-gradient(circle at top left, rgba(31, 94, 255, 0.08), transparent 28%),
-          radial-gradient(circle at top right, rgba(124, 58, 237, 0.07), transparent 24%),
-          var(--bg);
+          radial-gradient(circle at top left, rgba(184, 115, 53, 0.08), transparent 26%),
+          linear-gradient(180deg, var(--bg) 0%, #f7f3ee 100%);
         color: var(--text);
-        line-height: 1.7;
+        line-height: 1.6;
+        cursor: default;
       }
 
-      img {
-        max-width: 100%;
-        display: block;
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background: radial-gradient(circle at var(--cursor-x, 50%) var(--cursor-y, 50%), rgba(184, 115, 53, 0.12), transparent 18%);
+        transition: background-position 0.15s ease-out;
+        z-index: 0;
       }
 
       a {
         color: inherit;
         text-decoration: none;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
       }
 
       ul,
@@ -71,16 +79,41 @@
       }
 
       .container {
-        width: min(var(--container), calc(100% - 32px));
+        width: min(var(--container), calc(100% - 36px));
         margin: 0 auto;
+        position: relative;
+        z-index: 1;
+      }
+
+      .cursor {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        border: 1px solid rgba(23, 22, 20, 0.18);
+        background: rgba(255, 255, 255, 0.08);
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        z-index: 100;
+        transition: width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
+        backdrop-filter: blur(5px);
+      }
+
+      .cursor.active {
+        width: 52px;
+        height: 52px;
+        background: rgba(184, 115, 53, 0.1);
+        border-color: rgba(184, 115, 53, 0.45);
       }
 
       .site-header {
         position: sticky;
         top: 0;
-        z-index: 50;
+        z-index: 40;
         backdrop-filter: blur(18px);
-        background: rgba(247, 249, 252, 0.8);
+        background: rgba(243, 239, 233, 0.74);
         border-bottom: 1px solid var(--line);
       }
 
@@ -88,27 +121,27 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        min-height: 76px;
+        min-height: 78px;
       }
 
       .brand {
         display: inline-flex;
         align-items: center;
-        gap: 10px;
-        font-weight: 800;
-        letter-spacing: -0.03em;
+        gap: 12px;
+        font-weight: 700;
+        letter-spacing: -0.04em;
       }
 
       .brand-mark {
-        width: 38px;
-        height: 38px;
-        border-radius: 12px;
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
         display: grid;
         place-items: center;
-        background: linear-gradient(135deg, var(--primary), var(--secondary));
-        color: #fff;
-        font-size: 0.76rem;
-        box-shadow: 0 12px 22px rgba(31, 94, 255, 0.18);
+        background: var(--text);
+        color: #f7f3ee;
+        font-size: 0.72rem;
+        font-weight: 800;
       }
 
       .nav-links {
@@ -116,7 +149,9 @@
         align-items: center;
         gap: 28px;
         color: var(--muted);
-        font-size: 0.94rem;
+        font-size: 0.88rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
       }
 
       .nav-links a {
@@ -130,17 +165,11 @@
         left: 0;
         right: 0;
         bottom: -8px;
-        height: 2px;
-        border-radius: 999px;
-        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        height: 1px;
+        background: var(--text);
         transform: scaleX(0);
-        transform-origin: center;
+        transform-origin: left;
         transition: transform 0.2s ease;
-      }
-
-      .nav-links a:hover,
-      .nav-links a:focus-visible {
-        color: var(--text);
       }
 
       .nav-links a:hover::after,
@@ -151,71 +180,61 @@
       .nav-actions {
         display: flex;
         align-items: center;
-        gap: 14px;
+        gap: 12px;
       }
 
       .btn {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        min-height: 48px;
-        padding: 0 1.2rem;
+        min-height: 42px;
+        padding: 0 1.1rem;
         border-radius: 999px;
         border: 1px solid var(--line-strong);
-        font-weight: 600;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        background: rgba(255, 255, 255, 0.3);
+        transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
       }
 
       .btn:hover {
         transform: translateY(-2px);
+        border-color: rgba(23, 22, 20, 0.25);
       }
 
       .btn-primary {
-        color: #fff;
-        background: linear-gradient(135deg, var(--primary), var(--secondary));
-        border-color: transparent;
-        box-shadow: 0 18px 32px rgba(31, 94, 255, 0.18);
-      }
-
-      .btn-secondary {
-        background: rgba(255, 255, 255, 0.12);
-        color: var(--text);
+        background: var(--text);
+        color: #f7f3ee;
+        border-color: var(--text);
       }
 
       .menu-toggle {
         display: none;
-        width: 46px;
-        height: 46px;
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
         border: 1px solid var(--line-strong);
-        border-radius: 14px;
-        background: rgba(255, 255, 255, 0.9);
+        background: rgba(255,255,255,0.25);
         color: var(--text);
-        font-size: 1.4rem;
+        font-size: 1.2rem;
         cursor: pointer;
       }
 
       .hero {
-        padding: 72px 0 32px;
+        padding: 84px 0 42px;
       }
 
       .hero-grid {
         display: grid;
-        grid-template-columns: 1.2fr 0.8fr;
-        gap: 34px;
-        align-items: center;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 26px;
+        align-items: end;
       }
 
       .eyebrow {
         display: inline-flex;
         align-items: center;
         gap: 10px;
-        padding: 0.5rem 0.8rem;
-        border-radius: 999px;
-        background: rgba(31, 94, 255, 0.06);
-        border: 1px solid rgba(31, 94, 255, 0.1);
-        color: var(--primary);
-        font-size: 0.78rem;
-        font-weight: 700;
+        color: var(--muted);
+        font-size: 0.8rem;
         letter-spacing: 0.12em;
         text-transform: uppercase;
       }
@@ -226,28 +245,22 @@
         height: 8px;
         border-radius: 50%;
         background: var(--accent);
-        box-shadow: 0 0 20px rgba(20, 184, 166, 0.75);
+        box-shadow: 0 0 14px rgba(184, 115, 53, 0.55);
       }
 
       h1 {
-        margin: 22px 0 18px;
-        font-size: clamp(2.9rem, 6vw, 5.2rem);
-        line-height: 0.95;
-        letter-spacing: -0.06em;
-      }
-
-      .hero .gradient-text {
-        background: linear-gradient(90deg, var(--text), var(--primary), var(--secondary));
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
+        margin: 18px 0 18px;
+        font-size: clamp(3rem, 7vw, 7rem);
+        line-height: 0.9;
+        letter-spacing: -0.08em;
+        font-weight: 800;
       }
 
       .hero-copy {
-        max-width: 640px;
-        font-size: 1.08rem;
-        color: var(--muted);
+        max-width: 600px;
         margin: 0;
+        font-size: 1.06rem;
+        color: var(--muted);
       }
 
       .hero-actions {
@@ -257,13 +270,13 @@
         margin-top: 28px;
       }
 
-      .hero-meta {
+      .meta-row {
         display: flex;
         flex-wrap: wrap;
         gap: 18px;
         margin-top: 30px;
         color: var(--muted);
-        font-size: 0.95rem;
+        font-size: 0.9rem;
       }
 
       .meta-pill {
@@ -274,138 +287,94 @@
 
       .meta-pill::before {
         content: "";
-        width: 9px;
-        height: 9px;
+        width: 7px;
+        height: 7px;
         border-radius: 50%;
-        background: var(--accent);
-        box-shadow: 0 0 16px rgba(20, 184, 166, 0.7);
+        background: var(--text);
       }
 
       .profile-card {
         position: relative;
-        background: linear-gradient(180deg, #ffffff, #f6f9ff);
-        border: 1px solid var(--line);
+        min-height: 520px;
+        border: 1px solid rgba(23,22,20,0.04);
         border-radius: 28px;
-        padding: 20px;
-        box-shadow: var(--shadow);
+        background: linear-gradient(180deg, rgba(255,255,255,0.16), rgba(255,255,255,0.04));
+        padding: 18px;
+        overflow: hidden;
+        box-shadow: none;
       }
 
       .profile-visual {
         position: relative;
-        min-height: 500px;
-        border-radius: 22px;
-        overflow: hidden;
-        background:
-          radial-gradient(circle at top, rgba(31, 94, 255, 0.12), transparent 30%),
-          linear-gradient(140deg, #edf4ff, #f9faff 40%, #eef2f9);
-        border: 1px solid rgba(15, 23, 42, 0.04);
-      }
-
-      .portrait {
-        position: absolute;
-        width: 280px;
-        height: 350px;
-        left: 50%;
-        bottom: 0;
-        transform: translateX(-50%);
-        border-radius: 140px 140px 0 0;
-        background: linear-gradient(180deg, #dfeaf9 0%, #a5bfe3 36%, #7186a7 100%);
-        box-shadow: inset 0 0 25px rgba(255,255,255,0.35);
-      }
-
-      .portrait::before {
-        content: "";
-        position: absolute;
-        width: 110px;
-        height: 110px;
-        left: 50%;
-        top: -44px;
-        transform: translateX(-50%);
+        height: 100%;
+        min-height: 480px;
         border-radius: 50%;
-        background: linear-gradient(180deg, #f7fbff, #dde9f8 72%, #c1d3ef);
-        box-shadow: 0 0 0 14px rgba(255, 255, 255, 0.18);
+        background: transparent;
+        border: none;
+        overflow: hidden;
       }
 
-      .portrait::after {
+      .profile-photo {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 32%;
+        filter: none;
+      }
+
+      .profile-visual::after {
         content: "";
         position: absolute;
-        width: 150px;
-        height: 180px;
-        left: 50%;
-        bottom: -8px;
-        transform: translateX(-50%);
-        border-radius: 38% 38% 0 0;
-        background: linear-gradient(180deg, rgba(111, 133, 170, 0.8), rgba(53, 67, 83, 0.9));
+        inset: 0;
+        background: none;
       }
 
-      .mini-badge {
-        position: absolute;
-        right: 18px;
-        bottom: 18px;
-        padding: 14px 16px;
-        border-radius: 16px;
-        background: rgba(255,255,255,0.7);
-        border: 1px solid rgba(31, 94, 255, 0.1);
-        box-shadow: 0 18px 30px rgba(15, 23, 42, 0.08);
-      }
-
-      .mini-badge small {
-        color: var(--muted);
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-      }
-
-      .mini-badge strong {
-        display: block;
-        margin-top: 4px;
-        font-size: 1.08rem;
-      }
-
-      main section {
-        padding: 72px 0;
+      .section {
+        padding: 80px 0;
       }
 
       .section-header {
         display: flex;
         align-items: end;
         justify-content: space-between;
-        gap: 14px;
+        gap: 18px;
         margin-bottom: 24px;
       }
 
-      .section-kicker {
-        color: var(--primary);
+      .kicker {
+        color: var(--muted);
         font-size: 0.78rem;
-        letter-spacing: 0.15em;
+        letter-spacing: 0.14em;
         text-transform: uppercase;
-        font-weight: 800;
       }
 
       h2 {
         margin: 10px 0 0;
-        font-size: clamp(2.1rem, 3vw, 3rem);
-        letter-spacing: -0.06em;
+        font-size: clamp(2.3rem, 4vw, 4rem);
+        letter-spacing: -0.07em;
+        line-height: 0.95;
       }
 
       .about-grid,
-      .info-grid {
+      .split-grid,
+      .contact-wrap {
         display: grid;
-        grid-template-columns: 1.2fr 0.8fr;
+        grid-template-columns: 1.15fr 0.85fr;
         gap: 24px;
       }
 
       .panel {
-        background: var(--paper);
+        background: var(--panel);
         border: 1px solid var(--line);
         border-radius: var(--radius);
         box-shadow: var(--shadow);
       }
 
       .about-copy,
-      .stats-card,
-      .education-card,
-      .expertise-card,
-      .publication-card,
+      .info-box,
+      .timeline,
       .contact-card {
         padding: 28px;
       }
@@ -413,7 +382,7 @@
       .about-copy p {
         margin: 0 0 18px;
         color: var(--muted);
-        font-size: 1.05rem;
+        font-size: 1.02rem;
       }
 
       .about-copy p:last-child {
@@ -424,202 +393,232 @@
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 16px;
-        margin-top: 26px;
+        margin-top: 22px;
       }
 
-      .stat-item {
+      .stat {
         padding: 18px 16px;
         border-radius: 18px;
-        background: rgba(31, 94, 255, 0.03);
-        border: 1px solid rgba(31, 94, 255, 0.08);
+        background: rgba(255,255,255,0.34);
+        border: 1px solid rgba(23,22,20,0.06);
       }
 
-      .stat-item strong {
+      .stat strong {
         display: block;
-        font-size: clamp(1.5rem, 2vw, 2.1rem);
-        letter-spacing: -0.05em;
+        font-size: clamp(2rem, 3vw, 2.5rem);
+        letter-spacing: -0.08em;
       }
 
-      .stat-item span {
+      .stat span {
         color: var(--muted);
-        font-size: 0.84rem;
+        font-size: 0.82rem;
       }
 
       .tags {
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
-        margin-top: 16px;
+        margin-top: 18px;
       }
 
       .tag {
         display: inline-flex;
         align-items: center;
-        padding: 0.62rem 0.82rem;
+        padding: 0.6rem 0.8rem;
         border-radius: 999px;
-        background: rgba(31, 94, 255, 0.04);
-        border: 1px solid rgba(31, 94, 255, 0.08);
+        background: rgba(255,255,255,0.3);
+        border: 1px solid rgba(23,22,20,0.08);
         color: var(--text);
-        font-size: 0.87rem;
+        font-size: 0.82rem;
       }
 
-      .edu-list {
-        display: grid;
-        gap: 18px;
-        margin-top: 18px;
+      .timeline-item {
+        position: relative;
+        padding-left: 22px;
+        padding-bottom: 18px;
+        border-left: 1px solid rgba(23,22,20,0.12);
       }
 
-      .edu-item {
-        display: grid;
-        grid-template-columns: 64px 1fr;
-        gap: 16px;
-        align-items: start;
+      .timeline-item:last-child {
+        padding-bottom: 0;
       }
 
-      .edu-badge {
-        width: 58px;
-        height: 58px;
-        border-radius: 16px;
-        display: grid;
-        place-items: center;
-        background: linear-gradient(135deg, var(--primary), var(--secondary));
-        color: #fff;
-        font-weight: 800;
+      .timeline-item::before {
+        content: "";
+        position: absolute;
+        left: -5px;
+        top: 4px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--accent);
       }
 
-      .edu-item h3 {
-        margin: 0 0 5px;
-        font-size: 1.15rem;
-        letter-spacing: -0.04em;
+      .timeline-item .year {
+        font-size: 0.75rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
       }
 
-      .edu-item p {
+      .timeline-item h3 {
+        margin: 10px 0 8px;
+        font-size: 1.3rem;
+        letter-spacing: -0.05em;
+      }
+
+      .timeline-item p {
         margin: 0;
         color: var(--muted);
       }
 
-      .pub-grid {
+      .work-grid {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 22px;
       }
 
-      .publication-card {
-        display: flex;
-        flex-direction: column;
-        min-height: 320px;
-        background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(244,248,255,1));
+      .project-card {
+        position: relative;
+        padding: 22px;
+        min-height: 352px;
+        background: linear-gradient(180deg, rgba(255,255,255,0.52), rgba(255,255,255,0.32));
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        overflow: hidden;
+        transition: transform 0.25s ease, border-color 0.25s ease;
+        box-shadow: var(--shadow);
       }
 
-      .pub-thumb {
-        height: 170px;
-        border-radius: 18px;
-        background:
-          linear-gradient(135deg, rgba(31, 94, 255, 0.14), rgba(124, 58, 237, 0.12)),
-          linear-gradient(135deg, #edf4ff, #f8faff);
-        border: 1px solid rgba(15, 23, 42, 0.04);
+      .project-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(184, 115, 53, 0.12), transparent 28%);
+        opacity: 0;
+        transition: opacity 0.2s ease;
+      }
+
+      .project-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(23,22,20,0.18);
+      }
+
+      .project-card:hover::before {
+        opacity: 1;
+      }
+
+      .project-card .thumb {
         position: relative;
+        height: 190px;
+        border-radius: 18px;
+        background: linear-gradient(135deg, rgba(184,113,53,0.10), rgba(255,255,255,0.26));
+        border: 1px solid rgba(23,22,20,0.05);
         overflow: hidden;
       }
 
-      .pub-thumb::before,
-      .pub-thumb::after {
+      .project-card .thumb::before,
+      .project-card .thumb::after {
         content: "";
         position: absolute;
         border-radius: 18px;
-        background: rgba(15, 23, 42, 0.07);
+        background: rgba(23,22,20,0.06);
       }
 
-      .pub-thumb::before {
+      .project-card .thumb::before {
         width: 72%;
         height: 58%;
         left: 16px;
         bottom: 18px;
       }
 
-      .pub-thumb::after {
-        width: 24%;
-        height: 80%;
+      .project-card .thumb::after {
+        width: 28%;
+        height: 82%;
         right: 18px;
         bottom: 18px;
       }
 
-      .publication-card h3 {
-        margin: 18px 0 10px;
-        font-size: 1.32rem;
-        letter-spacing: -0.04em;
-        line-height: 1.3;
+      .project-card h3 {
+        margin: 18px 0 8px;
+        font-size: 1.5rem;
+        letter-spacing: -0.05em;
       }
 
-      .publication-card p {
-        margin: 0;
+      .project-card p {
+        margin: 0 0 18px;
         color: var(--muted);
       }
 
-      .pub-meta {
-        margin-top: auto;
-        padding-top: 16px;
+      .project-card .row {
         display: flex;
+        align-items: center;
         justify-content: space-between;
-        align-items: center;
-        gap: 10px;
-        color: var(--muted);
-        font-size: 0.8rem;
+        gap: 12px;
       }
 
-      .pub-link {
-        color: var(--primary);
-        font-weight: 700;
+      .project-number {
+        color: var(--soft);
+        font-size: 0.74rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
       }
 
-      .contact-grid {
-        display: grid;
-        grid-template-columns: 1.1fr 0.9fr;
-        gap: 24px;
-      }
-
-      .contact-card h3 {
-        margin: 0 0 12px;
-        font-size: clamp(2rem, 3vw, 2.8rem);
-        letter-spacing: -0.06em;
-      }
-
-      .contact-list {
-        margin-top: 20px;
-        display: grid;
-        gap: 10px;
-      }
-
-      .contact-item a {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
+      .project-link {
         color: var(--text);
         font-weight: 600;
       }
 
-      .contact-item .circle {
+      .contact-card h3 {
+        margin: 0 0 8px;
+        font-size: clamp(2.2rem, 4vw, 3.5rem);
+        letter-spacing: -0.08em;
+        line-height: 0.98;
+      }
+
+      .contact-card p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .contact-links {
+        display: grid;
+        gap: 10px;
+        margin-top: 26px;
+      }
+
+      .contact-links a {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        width: fit-content;
+        color: var(--text);
+        font-weight: 600;
+      }
+
+      .contact-links .dot {
         width: 28px;
         height: 28px;
         border-radius: 50%;
-        display: inline-grid;
+        display: grid;
         place-items: center;
-        background: rgba(31, 94, 255, 0.08);
-        color: var(--primary);
+        background: rgba(184, 115, 53, 0.12);
+        color: var(--accent);
         font-size: 0.8rem;
       }
 
-      .footer {
-        padding: 20px 0 52px;
+      .site-footer {
+        padding: 22px 0 52px;
         color: var(--muted);
-        border-top: 1px solid var(--line);
       }
 
       .footer-inner {
         display: flex;
-        align-items: center;
         justify-content: space-between;
+        align-items: center;
         gap: 18px;
+        padding-top: 18px;
+        border-top: 1px solid var(--line);
       }
 
       .socials {
@@ -629,21 +628,21 @@
       }
 
       .socials a {
-        width: 38px;
-        height: 38px;
+        width: 36px;
+        height: 36px;
         border-radius: 50%;
-        display: inline-grid;
+        border: 1px solid var(--line);
+        display: grid;
         place-items: center;
-        border: 1px solid var(--line-strong);
-        background: rgba(255,255,255,0.6);
+        background: rgba(255,255,255,0.3);
       }
 
       @media (max-width: 980px) {
         .hero-grid,
         .about-grid,
-        .info-grid,
-        .contact-grid,
-        .pub-grid {
+        .split-grid,
+        .contact-wrap,
+        .work-grid {
           grid-template-columns: 1fr;
         }
 
@@ -656,8 +655,8 @@
           flex-direction: column;
           align-items: flex-start;
           gap: 18px;
-          padding: 18px 16px 22px;
-          background: rgba(247, 249, 252, 0.98);
+          padding: 18px 18px 24px;
+          background: rgba(243, 239, 233, 0.96);
           border-bottom: 1px solid var(--line);
         }
 
@@ -680,22 +679,20 @@
           grid-template-columns: 1fr;
         }
 
-        .edu-item {
-          grid-template-columns: 1fr;
-        }
-
         .section-header,
         .footer-inner {
           display: block;
         }
 
         .socials {
-          margin-top: 12px;
+          margin-top: 10px;
         }
       }
     </style>
   </head>
   <body>
+    <div class="cursor" aria-hidden="true"></div>
+
     <header class="site-header">
       <div class="container nav-wrap">
         <a href="#top" class="brand" aria-label="Seyoung Joung home">
@@ -705,15 +702,14 @@
 
         <nav class="nav-links" id="site-nav" aria-label="Main navigation">
           <a href="#about">About</a>
-          <a href="#education">Education</a>
-          <a href="#research">Research</a>
+          <a href="#experience">Experience</a>
+          <a href="#projects">Projects</a>
           <a href="#publications">Publications</a>
-          <a href="#interests">Interests</a>
           <a href="#contact">Contact</a>
         </nav>
 
         <div class="nav-actions">
-          <a class="btn btn-primary" href="mailto:seyoung.joung11@gmail.com">Email Me</a>
+          <a class="btn btn-primary" href="mailto:seyoung.joung11@gmail.com">Email me</a>
           <button class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
         </div>
       </div>
@@ -723,78 +719,75 @@
       <section class="hero">
         <div class="container hero-grid">
           <div>
-            <span class="eyebrow">Researcher • AI • CV</span>
+            <span class="eyebrow">Researcher · AI · Computer Vision</span>
             <h1>
               Seyoung<br />
-              <span class="gradient-text">Joung</span>
+              Joung
             </h1>
             <p class="hero-copy">
-              I am a researcher with a multidisciplinary foundation in Statistics and Computer Science,
-              specializing in Artificial Intelligence. My mission is to design human-centered technologies
-              that broaden the horizons of human experience.
+              I design human-centered AI systems that connect technical rigor with accessibility,
+              sensory delight, and meaningful user experience.
             </p>
 
             <div class="hero-actions">
-              <a class="btn btn-primary" href="#publications">View publications</a>
-              <a class="btn btn-secondary" href="#about">About me</a>
+              <a class="btn btn-primary hover-lift" href="#projects">Selected work</a>
+              <a class="btn" href="#about">About me</a>
             </div>
 
-            <div class="hero-meta" aria-label="Quick facts">
-              <span class="meta-pill">AI &amp; Computer Vision</span>
+            <div class="meta-row">
+              <span class="meta-pill">AI &amp; ML</span>
+              <span class="meta-pill">3D / Depth</span>
               <span class="meta-pill">Human-centered design</span>
-              <span class="meta-pill">Accessible technology</span>
             </div>
           </div>
 
-          <div class="profile-card" aria-label="Profile card">
+          <div class="profile-card hover-lift">
             <div class="profile-visual">
-              <div class="portrait" aria-hidden="true"></div>
-              <div class="mini-badge">
-                <small>Location</small>
-                <strong>Seoul, Korea</strong>
-              </div>
+              <img class="profile-photo" src="assets/profile.jpg" alt="Seyoung Joung profile" />
             </div>
           </div>
         </div>
       </section>
 
-      <section id="about">
+      <section class="section" id="about">
         <div class="container">
           <div class="section-header">
             <div>
-              <div class="section-kicker">About</div>
-              <h2>Human-centered AI for inclusive experiences.</h2>
+              <div class="kicker">About</div>
+              <h2>Building thoughtful technologies for human experience.</h2>
             </div>
           </div>
 
           <div class="about-grid">
             <div class="panel about-copy">
               <p>
-                I am particularly dedicated to advancing digital accessibility, transforming technology into a
-                universal tool that ensures convenience and joy for everyone, including individuals with disabilities.
+                I am a researcher with a multidisciplined foundation in Statistics and Computer Science,
+                specializing in Artificial Intelligence. My mission is to design human-centered technologies
+                that broaden the horizons of human experience.
               </p>
               <p>
-                By integrating technical rigor with an intuition for movement—developed through my experience as an elite
-                futsal player—I strive to create inclusive innovations that empower human agency and sensory delight for all.
+                I am especially dedicated to advancing digital accessibility and transforming technology
+                into a universal tool that ensures convenience and joy for everyone, including individuals
+                with disabilities.
               </p>
               <p>
-                My research spans deep learning, computer vision, and AI systems that connect technical performance with
-                meaningful, human-centered impact.
+                By integrating technical depth with an intuition for movement and interaction, I strive to create
+                inclusive innovations that empower human agency and sensory delight for all.
               </p>
             </div>
 
-            <div class="panel stats-card">
-              <div class="section-kicker">Quick stats</div>
+            <div class="panel info-box">
+              <div class="kicker">Quick stats</div>
               <div class="stats">
-                <div class="stat-item">
+                <div class="stat">
                   <strong>3D</strong>
-                  <span>Depth &amp; vision</span>
+                  <span>Depth &amp; Vision</span>
                 </div>
-                <div class="stat-item">
+                <div class="stat">
                   <strong>AI</strong>
                   <span>ML &amp; DL</span>
                 </div>
-                <div class="stat-item">
+                <div class="stat">
                   <strong>HCI</strong>
                   <span>Human-centered</span>
                 </div>
@@ -804,170 +797,149 @@
         </div>
       </section>
 
-      <section id="education">
+      <section class="section" id="experience">
         <div class="container">
           <div class="section-header">
             <div>
-              <div class="section-kicker">Education</div>
+              <div class="kicker">Education</div>
               <h2>Academic background.</h2>
             </div>
           </div>
 
-          <div class="panel education-card">
-            <div class="edu-list">
-              <div class="edu-item">
-                <div class="edu-badge">ASU</div>
-                <div>
-                  <h3>MS Media Arts and Sciences</h3>
-                  <p>Arizona State University</p>
-                </div>
-              </div>
-
-              <div class="edu-item">
-                <div class="edu-badge">EWHA</div>
-                <div>
-                  <h3>MS Artificial Intelligence and Software</h3>
-                  <p>Ewha Womans University</p>
-                </div>
-              </div>
-
-              <div class="edu-item">
-                <div class="edu-badge">EWHA</div>
-                <div>
-                  <h3>BS Statistics &amp; BSE Computer Science</h3>
-                  <p>Ewha Womans University</p>
-                </div>
-              </div>
+          <div class="panel timeline">
+            <div class="timeline-item">
+              <div class="year">2025</div>
+              <h3>MS Media Arts and Sciences</h3>
+              <p>Arizona State University</p>
+            </div>
+            <div class="timeline-item">
+              <div class="year">2021</div>
+              <h3>MS Artificial Intelligence and Software</h3>
+              <p>Ewha Womans University</p>
+            </div>
+            <div class="timeline-item">
+              <div class="year">2018</div>
+              <h3>BS Statistics &amp; BSE Computer Science</h3>
+              <p>Ewha Womans University</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="research">
+      <section class="section" id="projects">
         <div class="container">
           <div class="section-header">
             <div>
-              <div class="section-kicker">Expertise</div>
-              <h2>Research focus and capabilities.</h2>
+              <div class="kicker">Selected work</div>
+              <h2>Things people actually use.</h2>
             </div>
           </div>
 
-          <div class="info-grid">
-            <div class="panel expertise-card">
+          <div class="work-grid">
+            <article class="project-card hover-lift">
+              <div class="thumb" aria-hidden="true"></div>
+              <h3>U.S. Women’s Colleges Through the Ages</h3>
+              <p>
+                A BERTopic-driven literature review identifying emerging paradigms in women’s college research.
+              </p>
+              <div class="row">
+                <span class="project-number">01</span>
+                <a class="project-link" href="https://seyoungjoung.netlify.app/publications/asu-poster/">Read more</a>
+              </div>
+            </article>
+
+            <article class="project-card hover-lift">
+              <div class="thumb" aria-hidden="true"></div>
+              <h3>Masked Token Optimization</h3>
+              <p>
+                A method improving self-supervised pretraining efficiency through masked token recalibration.
+              </p>
+              <div class="row">
+                <span class="project-number">02</span>
+                <a class="project-link" href="https://seyoungjoung.netlify.app/publications/conference-paper/">Read more</a>
+              </div>
+            </article>
+
+            <article class="project-card hover-lift">
+              <div class="thumb" aria-hidden="true"></div>
+              <h3>DeCoMon</h3>
+              <p>
+                Depth completion-guided monocular depth estimation with knowledge distillation for scale-consistent prediction.
+              </p>
+              <div class="row">
+                <span class="project-number">03</span>
+                <a class="project-link" href="https://seyoungjoung.netlify.app/publications/masters-thesis/">Read more</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="publications">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <div class="kicker">Expertise</div>
+              <h2>Focused across AI, depth, and human-centered systems.</h2>
+            </div>
+          </div>
+
+          <div class="split-grid">
+            <div class="panel info-box">
               <div class="tags">
-                <span class="tag">Computer Vision (3D &amp; Depth)</span>
+                <span class="tag">Computer Vision</span>
+                <span class="tag">3D &amp; Depth</span>
                 <span class="tag">Deep Learning</span>
                 <span class="tag">Machine Learning</span>
-                <span class="tag">Mathematical Foundations</span>
                 <span class="tag">Human-AI Interaction</span>
-                <span class="tag">Human-centered Spatial Design</span>
+                <span class="tag">Accessible Tech</span>
               </div>
             </div>
 
-            <div class="panel expertise-card" id="interests">
-              <div class="section-kicker">Interests</div>
+            <div class="panel info-box">
+              <div class="kicker">Interests</div>
               <div class="tags">
+                <span class="tag">Human-centered AI</span>
                 <span class="tag">Virtual &amp; Physical Design</span>
-                <span class="tag">Human-AI Interaction</span>
-                <span class="tag">Human Centered AI</span>
-                <span class="tag">Accessible Technology</span>
-                <span class="tag">Digital Experiences</span>
+                <span class="tag">Digital Accessibility</span>
+                <span class="tag">Spatial Systems</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="publications">
-        <div class="container">
-          <div class="section-header">
-            <div>
-              <div class="section-kicker">Publications</div>
-              <h2>Recent work and presentations.</h2>
+      <section class="section" id="contact">
+        <div class="container contact-wrap">
+          <div class="panel contact-card">
+            <div class="kicker">Contact</div>
+            <h3>Have something worth building?</h3>
+            <p>Open to collaborations, research conversations, and technical problem-solving.</p>
+
+            <div class="contact-links">
+              <a href="mailto:seyoung.joung11@gmail.com"><span class="dot">@</span> seyoung.joung11@gmail.com</a>
+              <a href="https://github.com/seyoung98" target="_blank" rel="noreferrer"><span class="dot">G</span> github.com/seyoung98</a>
+              <a href="https://seyoungjoung.netlify.app/" target="_blank" rel="noreferrer"><span class="dot">W</span> seyoungjoung.netlify.app</a>
             </div>
           </div>
 
-          <div class="pub-grid">
-            <article class="panel publication-card">
-              <div class="pub-thumb" aria-hidden="true"></div>
-              <h3>U.S. Women’s Colleges Through the Ages: A Systematic Review of the Literature Using BERTopic</h3>
-              <p>
-                A computational review of women’s college literature (1873–2025) leveraging BERTopic to
-                identify shifting research paradigms.
-              </p>
-              <div class="pub-meta">
-                <span>ASU Poster</span>
-                <a class="pub-link" href="https://seyoungjoung.netlify.app/publications/asu-poster/">Read more</a>
-              </div>
-            </article>
-
-            <article class="panel publication-card">
-              <div class="pub-thumb" aria-hidden="true"></div>
-              <h3>Emerging Property of Masked Token for Effective Pre-training</h3>
-              <p>
-                Proposed MTO to improve MIM pre-training efficiency by 50% through masked token weight recalibration.
-              </p>
-              <div class="pub-meta">
-                <span>ECCV 2024</span>
-                <a class="pub-link" href="https://seyoungjoung.netlify.app/publications/conference-paper/">Read more</a>
-              </div>
-            </article>
-
-            <article class="panel publication-card">
-              <div class="pub-thumb" aria-hidden="true"></div>
-              <h3>DeCoMon: Depth Completion-Guided Monocular Depth Estimation via Knowledge Distillation</h3>
-              <p>
-                A novel knowledge distillation framework resolving scale ambiguity in monocular depth estimation for
-                LiDAR-free, scale-consistent prediction.
-              </p>
-              <div class="pub-meta">
-                <span>Master's thesis</span>
-                <a class="pub-link" href="https://seyoungjoung.netlify.app/publications/masters-thesis/">Read more</a>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="contact">
-        <div class="container">
-          <div class="contact-grid">
-            <div class="panel contact-card">
-              <div class="section-kicker">Contact</div>
-              <h3>Let’s build meaningful AI and human-centered systems.</h3>
-              <p class="muted">Available for collaborations, research conversations, and design-driven technical work.</p>
-              <div class="contact-list">
-                <div class="contact-item">
-                  <a href="mailto:seyoung.joung11@gmail.com"><span class="circle">@</span> seyoung.joung11@gmail.com</a>
-                </div>
-                <div class="contact-item">
-                  <a href="https://github.com/seyoung98" target="_blank" rel="noreferrer"><span class="circle">G</span> github.com/seyoung98</a>
-                </div>
-                <div class="contact-item">
-                  <a href="https://seyoungjoung.netlify.app/" target="_blank" rel="noreferrer"><span class="circle">W</span> seyoungjoung.netlify.app</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="panel stats-card">
-              <div class="section-kicker">Location</div>
-              <p class="muted">
-                Seoul, Korea<br />
-                Researching at the intersection of AI, vision, and human-centered design.
-              </p>
-              <div class="tags">
-                <span class="tag">AI</span>
-                <span class="tag">CV</span>
-                <span class="tag">HCI</span>
-                <span class="tag">Accessibility</span>
-              </div>
+          <div class="panel info-box">
+            <div class="kicker">Location</div>
+            <p>
+              Seoul, Korea<br />
+              Researching at the intersection of AI, vision, and human-centered design.
+            </p>
+            <div class="tags">
+              <span class="tag">AI</span>
+              <span class="tag">Computer Vision</span>
+              <span class="tag">HCI</span>
             </div>
           </div>
         </div>
       </section>
     </main>
 
-    <footer class="footer">
+    <footer class="site-footer">
       <div class="container footer-inner">
         <div>© 2026 Seyoung Joung</div>
         <div class="socials" aria-label="Social links">
@@ -979,12 +951,38 @@
     </footer>
 
     <script>
+      const cursor = document.querySelector('.cursor');
+
+      document.addEventListener('pointermove', (e) => {
+        document.body.style.setProperty('--cursor-x', `${e.clientX}px`);
+        document.body.style.setProperty('--cursor-y', `${e.clientY}px`);
+        cursor.style.left = `${e.clientX}px`;
+        cursor.style.top = `${e.clientY}px`;
+      });
+
+      const hoverTargets = document.querySelectorAll('.hover-lift, .btn, .project-card, a');
+      hoverTargets.forEach((el) => {
+        el.addEventListener('mouseenter', () => cursor.classList.add('active'));
+        el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
+      });
+
+      const cardEffects = document.querySelectorAll('.project-card, .hover-lift');
+      cardEffects.forEach((card) => {
+        card.addEventListener('pointermove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = ((e.clientX - rect.left) / rect.width) * 100;
+          const y = ((e.clientY - rect.top) / rect.height) * 100;
+          card.style.setProperty('--mx', `${x}%`);
+          card.style.setProperty('--my', `${y}%`);
+        });
+      });
+
       const menuToggle = document.getElementById('menu-toggle');
       const nav = document.getElementById('site-nav');
 
       menuToggle.addEventListener('click', () => {
-        const open = nav.classList.toggle('open');
-        menuToggle.setAttribute('aria-expanded', String(open));
+        const isOpen = nav.classList.toggle('open');
+        menuToggle.setAttribute('aria-expanded', String(isOpen));
       });
 
       nav.querySelectorAll('a').forEach((link) => {
